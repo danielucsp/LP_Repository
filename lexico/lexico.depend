@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1441119153 source:c:\users\alumno-c\desktop\lexico\main.cpp
+	<stdio.h>
+	<ctype.h>
+
