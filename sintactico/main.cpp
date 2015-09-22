@@ -134,7 +134,15 @@ switch (charClass) {
                 addChar();
                 getChar();
               }
-        nextToken = IDENT;
+        if(charClass == POINT)
+        {
+            while (!isspace(nextChar)) {
+                addChar();
+                getChar();
+            }
+            nextToken = UNKNOWN;
+        }
+        else    nextToken = IDENT;
         break;
     /* Parse integer literals */
     case DIGIT:
