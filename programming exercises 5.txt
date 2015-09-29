@@ -75,3 +75,30 @@ var t = add();
 print (t); //1100
 
 dentro de cada funcion anidada dentro de la funcion principal (add) se llama a las variables declaradas en esta.
+
+
+4. Repeat Programming Exercise 3 with Python.
+
+def add():
+    counter = 0
+    counter2 = 10
+    counter3 = 1000
+    def plus():
+        counter += 1
+        def minus():
+            counter2 -= 1
+        counter3 = counter3 + 100
+    return counter3
+
+a = add()
+print a
+
+A diferencia del ejercicio anterior hecho en javascript, el codigo ejecutado en python no reconoce la variables declaradas en los ambitos de funciones fuera de uno de manera implicita, por lo que se debe utilizar la palabra global para que esta reconozca variables declaradas fuera de un ambito.
+
+5. Write a C function that includes the following sequence of statements:
+
+x = 21;
+int x;
+x = 42;
+
+
