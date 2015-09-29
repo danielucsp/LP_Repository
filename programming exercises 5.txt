@@ -51,3 +51,27 @@ En el ambito dinamico como se vio fue que permite cambiar los tipos de valores d
 > (check-dinamico)    									# imprime el valor 6
 
 dentro de un ambito dinamico permite la modificacion de las variables globales. Para eso utiliza la palabra "defvar" y utiliza asteriscos "*" para declarar esas variables
+
+3.  Write a JavaScript script that has subprograms nested three deep and in which each nested subprogram references variables defined in all of its enclosing subprograms.
+
+function add() {
+    var counter = 0;                
+    var counter2 = 10;
+    var counter3 = 100;
+    function plus()
+    {
+      counter += 1;
+      function minus()
+      {
+        
+        counter2 -= 1;
+      }
+    }
+	counter3 += 1000;
+    return counter3;
+}
+
+var t = add();
+print (t); //1100
+
+dentro de cada funcion anidada dentro de la funcion principal (add) se llama a las variables declaradas en esta.
