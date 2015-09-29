@@ -1,0 +1,26 @@
+1. Perl allows both static and a kind of dynamic scoping. Write a Perl program that uses both and clearly shows the difference in effect of the two. Explain clearly the difference between the dynamic scoping described in 
+this chapter and that implemented in Perl.
+
+$var = "Global";
+
+sub inner {
+    print "inner:         $var\n";
+}
+
+sub changelocal {
+    my $var = "Local";
+    print "changelocal:   $var\n";
+
+    &inner
+}
+
+sub changedynamic {
+    local $var = "Dynamic";
+    print "changedynamic: $var\n";
+
+    &inner
+}
+
+&inner
+&changelocal
+&changedynamic
