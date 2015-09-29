@@ -8,19 +8,46 @@ sub inner {
 }
 
 sub changelocal {
-    my $var = "Local";
+    my $var = "Local";                      indica que utilizara una variable local
     print "changelocal:   $var\n";
 
     &inner
 }
 
 sub changedynamic {
-    local $var = "Dynamic";
+    local $var = "Dynamic";                 indica que utilizara la variable global declarada
     print "changedynamic: $var\n";
 
     &inner
 }
 
 &inner
-&changelocal
 &changedynamic
+&changelocal
+
+bota:
+
+inner:         Global
+changedynamic: Dynamic
+inner:         Dynamic
+changelocal:   Local
+inner:         Global
+
+En el ambito dinamico como se vio fue que permite cambiar los tipos de valores dentro de una funcion o ambito y si alguna otra llamada a funcion esta dentro de este, tambien los valores se ven alterados.
+
+
+2. Write a Common LISP program that clearly shows the difference  between static and dynamic scoping.
+
+> (set 'estatico 5) 
+> (defun check-estatico () estatico)
+> (check-estatico)    									# imprime el valor 5 
+> (let ((estatico 6)) (check-estatico))  				# modifica el valor de estatico de 5 a 6
+> (check-estatico)    									# imprime el valor 5
+
+> (defvar *dinamico* 5) 
+> (defun check-dinamico () *dinamico*)
+> (check-dinamico)    									# imprime el valor 5 
+> (let ((*dinamico* 6)) (check-dinamico))  				# modifica el valor de estatico de 5 a 6
+> (check-dinamico)    									# imprime el valor 6
+
+dentro de un ambito dinamico permite la modificacion de las variables globales. Para eso utiliza la palabra "defvar" y utiliza asteriscos "*" para declarar esas variables
