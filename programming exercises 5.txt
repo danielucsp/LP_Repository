@@ -101,4 +101,104 @@ x = 21;
 int x;
 x = 42;
 
+int x;
+void fun()
+{
+    x = 21;
+    int x;
+    x = 42;
+}
 
+6. Write test programs in C++, Java, and C# to determine the scope of a variable declared in a for statement. Specifically, the code must determine whether such a variable is visible after the body of the for statement.
+
+C++:
+
+void fun()
+{
+	for(int i = 0; i < 100; i++)
+		bool var = false;
+		
+	if(var) cout << "true";
+	else cout << "false";
+}
+
+Java:
+
+public void fun()
+{
+	for(int i = 0; i < 100; i++)
+		Boolean var = false;
+		
+	if(var) System.out.println("true");
+	else System.out.println("false");
+}
+
+C#:
+
+class Program
+{
+    static void Main()
+    {
+        bool var = false;
+        for(int i = 0; i < 100; i++)
+		    var = true;
+		
+    	if(var)  Console.WriteLine("true");
+    	else  Console.WriteLine("false");
+    }
+}
+
+7. Write three functions in C or C++: one that declares a large array statically, one that declares the same large array on the stack, and one that creates the same large array from the heap. Call each of the subprograms a large number of times (at least 100,000) and output the time required by each. Explain the results.
+
+void estatico()
+{
+    int static v[666];
+}
+
+void pila()
+{
+    int v[666];
+}
+
+void heap()
+{
+    new int v[666];
+}
+
+1:
+int main()
+{
+
+    for (int i = 0; i < 100000; i++)
+        estatico();
+		
+	return 0;
+}
+
+2:
+int main()
+{
+
+    for (int i = 0; i < 100000; i++)
+        pila();
+		
+	return 0;
+}
+
+3:
+int main()
+{
+
+    for (int i = 0; i < 100000; i++)
+        heap();
+		
+	return 0;
+}
+
+1: 0.016 segundos
+2: 0.047 segundos
+3: 0.234 segundos
+
+En el 1er caso, toma menos tiempo ya que solo se almacena el indice primero de todo el vector, porque los valores dentro de este vector nunca seran modificados.
+En el 2do caso, toma mas tiempo a diferencia del 1ro debido a que aqui si puede existir alguna modificacion en cualquier posicion del vector, por lo tanto se debe almacenar cada indice del vector en caso se quieran modificar.
+En el 3er caso, toma mas tiempo que los anteriores porque se almacenará las variables en tiempo de ejecución, y en la memoria RAM, y a diferencia del 2do caso este no se almacena en una estructura de datos por lo que se separa en la RAM la posicion donde se encuentra el vector, el indice del vector, y cada posición que contiene el vector.
