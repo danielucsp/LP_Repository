@@ -101,6 +101,7 @@ x = 21;
 int x;
 x = 42;
 
+C: 
 int x;
 void fun()
 {
@@ -108,6 +109,22 @@ void fun()
     int x;
     x = 42;
 }
+
+Java:
+
+class Pro
+{
+	static int x;
+	public void main()
+	{
+	
+		x = 21;
+		int x;
+		x = 42;
+	}
+}
+
+Con las sentencias dadas, tanto en C como en Java el programa retorna un error de compilaci{on, y eso debido a que en "x = 21", "x" no ha sido declarada anteriormente. Y para solucionar eso se debe agregar una sentencia adicional "int x;" y "static int x;" para C y Java respectivamente. 
 
 6. Write test programs in C++, Java, and C# to determine the scope of a variable declared in a for statement. Specifically, the code must determine whether such a variable is visible after the body of the for statement.
 
