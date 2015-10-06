@@ -139,6 +139,7 @@ error: class, interface, or enum expected
 
 C#:
 
+using System;
 class Program
 {
     static void Main()
@@ -151,6 +152,10 @@ class Program
     	else  Console.WriteLine("false");
     }
 }
+
+True
+
+En conclusion en lo lenguajes de C++ y Java (jre7) no reconocen la variable "var" debido a que no utilizan ambitos dinámicos, a diferencia de C# el cual si lo utiliza y por lo tanto si reconoce la variable "var" declarada dentro del for.
 
 7. Write three functions in C or C++: one that declares a large array statically, one that declares the same large array on the stack, and one that creates the same large array from the heap. Call each of the subprograms a large number of times (at least 100,000) and output the time required by each. Explain the results.
 
