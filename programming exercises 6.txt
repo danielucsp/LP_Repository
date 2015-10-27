@@ -29,3 +29,22 @@ int main(){
 -se puede realizar asignaciones de valores entre structs que sean declarados en una misma sentencia
 -no se puede realizar asignaciones de valores entre 2 sentencias de struct, incluso si contrienen los mismos datos
 -permite los arreglos de tipos de datos, pero no permite la asignacion de valores
+
+2. Determine whether some C compiler to which you have access implements the free function.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   char *str;
+   str = (char *) malloc(15);
+   
+   free(str);   
+   return(0);
+}
+
+free hace llamada a un puntero a void, el cual libera memoria al declarar un malloc o alojamiento de memoria
+
+3. Write a program that does matrix multiplication in some language that does subscript range checking and for which you can obtain an assembly language or machine language version from the compiler. Determine the number of instructions required for the subscript range checking and compare it with the total number of instructions for the matrix multiplication process.
+
