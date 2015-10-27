@@ -1,0 +1,31 @@
+1. Design a set of simple test programs to determine the type compatibility rules of a C compiler to which you have access. Write a report of your findings.
+
+#include <stdio.h>
+
+int main(){
+    int a = 3;		//imprime 3
+    int b = 3.4;	//imprime 3
+    float c = 4;	//imrpime 4.000000
+    int d = c+a;	//imprime 7
+
+    char t = 4;		//permitido
+
+    bool x = true;	//no permitido
+
+    struct { int x; } e, f;
+    e.x = f.x;		//permitido
+
+    struct { int x; } *p;
+    p.x = &e.x;	//no permitido
+    p = &e;	//no permitido
+
+    int *aa[12];	//permitido
+    aa[4] = 234;	//no permitido
+}
+
+-En un compilador C, las variables primitivas son los enteros, decimales, y caracteres unicamente.
+-No existe los tipos de variable bool
+-se puede realizar operaciones entre tipos enteros y flotantes retornando el resultado segun el tipo en el que se esta evaluando.
+-se puede realizar asignaciones de valores entre structs que sean declarados en una misma sentencia
+-no se puede realizar asignaciones de valores entre 2 sentencias de struct, incluso si contrienen los mismos datos
+-permite los arreglos de tipos de datos, pero no permite la asignacion de valores
