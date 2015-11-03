@@ -287,4 +287,14 @@ for(i=0;i<n;i++)
  para el 1er caso se obtuvo 0.041s y para el segundo 0.016, evaluandolos ambos con una arreglo multidimensional (matriz) de 300x300, el tiempo de respuesta es notorio ya que utilizando operaciones de punteros para la alojacion de la matriz es r{apido ya que esta trabaja unicamente con direcciones de memoria, a diferencia del otro caso que debe de buscar la poscicion en la pila del compilador.
  En cuanto a la confiabilidad se puede decir que el 1er caso es mas "seguro" ya que al no utilizar punteros se está restringiendo el acceso a ciertas zonas del programa por parte del programador las cuales podrian ser alteradas con el uso de punteros.
 
+8. Write a Perl program that uses a hash and a large number of operations on the hash. For example, the hash could store people’s names and their ages. A random-number generator could be used to create three-characternames and ages, which could be added to the hash. When a duplicate name was generated, it would cause an access to the hash but not add a new element. Rewrite the same program without using hashes. Compare the execution efficiency of the two. Compare the ease of programming and readability of the two.
 
+9. Write a program in the language of your choice that behaves differently if the language used name equivalence than if it used structural equivalence.
+
+10. For what types of A and B is the simple assignment statement A = B legal in C++ but not Java?
+
+- la asignacion de valores entre una variable bool y un entero es legal en C++ pero no en Java
+- la asignacion de valores entre una variable char y un entero es legal en C++ pero no en Java
+
+
+11. For what types of A and B is the simple assignment statement A = B legal in Java but not in Ada?
