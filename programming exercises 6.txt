@@ -48,3 +48,185 @@ free hace llamada a un puntero a void, el cual libera memoria al declarar un mal
 
 3. Write a program that does matrix multiplication in some language that does subscript range checking and for which you can obtain an assembly language or machine language version from the compiler. Determine the number of instructions required for the subscript range checking and compare it with the total number of instructions for the matrix multiplication process.
 
+int A[20][20], B[20][20], C[20][20];
+    int k =3;
+    int m =3;
+    int n =3;
+    // Inicializamos la matriz C.
+    for(int i=0; i<k; ++i)
+        for(int j=0; j<n; ++j)
+        {
+            C[i][j] = 0;
+            A[i][j] = 1;
+            B[i][j] = 1;
+        }
+
+    for(int i=0; i<k; ++i)
+        for(int j=0; j<n; ++j)
+            for(int z=0; z<m; ++z)
+                C[i][j] += A[i][z] * B[z][j];
+
+    return 0;
+
+0x00401334	push   %ebp
+0x00401335	mov    %esp,%ebp
+0x00401337	push   %ebx
+0x00401338	and    $0xfffffff0,%esp
+0x0040133B	mov    $0x12e0,%eax
+0x00401340	call   0x4169a0 <__chkstk_ms>
+0x00401345	sub    %eax,%esp
+0x00401347	call   0x416760 <__main>
+0x0040134C	movl   $0x3,0x12c8(%esp)
+0x00401357	movl   $0x3,0x12c4(%esp)
+0x00401362	movl   $0x3,0x12c0(%esp)
+0x0040136D	movl   $0x0,0x12dc(%esp)
+0x00401378	jmp    0x40141c <main()+232>
+0x0040137D	movl   $0x0,0x12d8(%esp)
+0x00401388	jmp    0x4013fc <main()+200>
+0x0040138A	mov    0x12dc(%esp),%edx
+0x00401391	mov    %edx,%eax
+0x00401393	shl    $0x2,%eax
+0x00401396	add    %edx,%eax
+0x00401398	shl    $0x2,%eax
+0x0040139B	mov    0x12d8(%esp),%edx
+0x004013A2	add    %edx,%eax
+0x004013A4	movl   $0x0,0xc80(%esp,%eax,4)
+0x004013AF	mov    0x12dc(%esp),%edx
+0x004013B6	mov    %edx,%eax
+0x004013B8	shl    $0x2,%eax
+0x004013BB	add    %edx,%eax
+0x004013BD	shl    $0x2,%eax
+0x004013C0	mov    0x12d8(%esp),%edx
+0x004013C7	add    %edx,%eax
+0x004013C9	movl   $0x1,(%esp,%eax,4)
+0x004013D0	mov    0x12dc(%esp),%edx
+0x004013D7	mov    %edx,%eax
+0x004013D9	shl    $0x2,%eax
+0x004013DC	add    %edx,%eax
+0x004013DE	shl    $0x2,%eax
+0x004013E1	mov    0x12d8(%esp),%edx
+0x004013E8	add    %edx,%eax
+0x004013EA	movl   $0x1,0x640(%esp,%eax,4)
+0x004013F5	incl   0x12d8(%esp)
+0x004013FC	mov    0x12d8(%esp),%eax
+0x00401403	cmp    0x12c0(%esp),%eax
+0x0040140A	setl   %al
+0x0040140D	test   %al,%al
+0x0040140F	jne    0x40138a <main()+86>
+0x00401415	incl   0x12dc(%esp)
+0x0040141C	mov    0x12dc(%esp),%eax
+0x00401423	cmp    0x12c8(%esp),%eax
+0x0040142A	setl   %al
+0x0040142D	test   %al,%al
+0x0040142F	jne    0x40137d <main()+73>
+0x00401435	movl   $0x0,0x12d4(%esp)
+0x00401440	jmp    0x401531 <main()+509>
+0x00401445	movl   $0x0,0x12d0(%esp)
+0x00401450	jmp    0x401511 <main()+477>
+0x00401455	movl   $0x0,0x12cc(%esp)
+0x00401460	jmp    0x4014f1 <main()+445>
+0x00401465	mov    0x12d4(%esp),%edx
+0x0040146C	mov    %edx,%eax
+0x0040146E	shl    $0x2,%eax
+0x00401471	add    %edx,%eax
+0x00401473	shl    $0x2,%eax
+0x00401476	mov    0x12d0(%esp),%edx
+0x0040147D	add    %edx,%eax
+0x0040147F	mov    0xc80(%esp,%eax,4),%ecx
+0x00401486	mov    0x12d4(%esp),%edx
+0x0040148D	mov    %edx,%eax
+0x0040148F	shl    $0x2,%eax
+0x00401492	add    %edx,%eax
+0x00401494	shl    $0x2,%eax
+0x00401497	mov    0x12cc(%esp),%edx
+0x0040149E	add    %edx,%eax
+0x004014A0	mov    (%esp,%eax,4),%ebx
+0x004014A3	mov    0x12cc(%esp),%edx
+0x004014AA	mov    %edx,%eax
+0x004014AC	shl    $0x2,%eax
+0x004014AF	add    %edx,%eax
+0x004014B1	shl    $0x2,%eax
+0x004014B4	mov    0x12d0(%esp),%edx
+0x004014BB	add    %edx,%eax
+0x004014BD	mov    0x640(%esp,%eax,4),%eax
+0x004014C4	imul   %ebx,%eax
+0x004014C7	add    %eax,%ecx
+0x004014C9	mov    0x12d4(%esp),%edx
+0x004014D0	mov    %edx,%eax
+0x004014D2	shl    $0x2,%eax
+0x004014D5	add    %edx,%eax
+0x004014D7	shl    $0x2,%eax
+0x004014DA	mov    0x12d0(%esp),%edx
+0x004014E1	add    %edx,%eax
+0x004014E3	mov    %ecx,0xc80(%esp,%eax,4)
+0x004014EA	incl   0x12cc(%esp)
+0x004014F1	mov    0x12cc(%esp),%eax
+0x004014F8	cmp    0x12c4(%esp),%eax
+0x004014FF	setl   %al
+0x00401502	test   %al,%al
+0x00401504	jne    0x401465 <main()+305>
+0x0040150A	incl   0x12d0(%esp)
+0x00401511	mov    0x12d0(%esp),%eax
+0x00401518	cmp    0x12c0(%esp),%eax
+0x0040151F	setl   %al
+0x00401522	test   %al,%al
+0x00401524	jne    0x401455 <main()+289>
+0x0040152A	incl   0x12d4(%esp)
+0x00401531	mov    0x12d4(%esp),%eax
+0x00401538	cmp    0x12c8(%esp),%eax
+0x0040153F	setl   %al
+0x00401542	test   %al,%al
+0x00401544	jne    0x401445 <main()+273>
+0x0040154A	mov    $0x0,%eax
+0x0040154F	mov    -0x4(%ebp),%ebx
+0x00401552	leave
+0x00401553	ret
+
+para la multiplicacion de matrices se requieren 3 instrucciones para el subscript range checking debido a que en la multiplicaci{on de matrices se requiere de una anidacion de bucles:
+0x0040152A	incl   0x12d4(%esp)
+0x00401445	movl   $0x0,0x12d0(%esp)
+0x00401465  movl   $0x0,0x12cc(%esp)
+y por ultimo el numero de instrucciones que se requieren para realizar la multiplicacion, depende de la dimensionalidad de las 2 matrices, por ejemplo si las dos matrices son cuadradas y de dimensiones nxn, entonces se requerira n^3 instrucciones.
+
+4. If you have access to a compiler in which the user can specify whether subscript range checking is desired, write a program that does a large number of matrix accesses and time their execution. Run the program with subscript range checking and without it, and compare the times.
+
+
+
+5. Write a simple program in C++ to investigate the safety of its enumeration types. Include at least 10 different operations on enumeration types to determine what incorrect or just silly things are legal. Now, write a C# program that does the same things and run it to determine how many of the incorrect or silly things are legal. Compare your results.
+
+C++:
+enum Suit { cero , uno, dos, tres };
+    // int a = cero + 1;    C
+    // cero = 5;            I
+    // int b = uno + dos;   C
+    // uno = dos;           I
+    // cero++;              I
+    // char f = uno;        C
+
+    // int c[12];
+    // c[2] = uno;          C
+    // c[cero] = 3;         I
+    // c[2+uno] = 5;        I
+    // bool h = cero > uno; C
+    
+C#:
+
+
+6. Write a program in C++ or C# that includes two different enumeration types and has a significant number of operations using the enumeration types. Also write the same program using only integer variables. Compare the readability and predict the reliability differences between the two programs.
+
+    enum numeros { cero, uno, dos, tres, cuatro};
+    enum aleatorio { a =4, b, c = 20, d = 2, e};
+
+    int cinco = dos + tres;
+    int doce = tres * cuatro;
+    int num = a;
+    int num_sig = b;
+    int num_sig_sig = c;
+    
+    int cinco = 2+3;
+    int doce = 3*4;
+    int num = 4;
+    int num_sig = 5;
+    int num_sig_sig = 20;
+    
+la diferencia en la legibilidad varia segun los tipos de valores asignados a los elementos dentro de un enum, como en el ejemplo de numeros y aleatorio. El poder reconocer los valores que contienen depende de la secuencia que se esta siguiendo, si se sigue una secuencia edsordenada como en el caso de aleatorio se pierde la legibilidad la confiabilidad por el desorden que hay en sus valores.
