@@ -230,3 +230,48 @@ C#:
     int num_sig_sig = 20;
     
 la diferencia en la legibilidad varia segun los tipos de valores asignados a los elementos dentro de un enum, como en el ejemplo de numeros y aleatorio. El poder reconocer los valores que contienen depende de la secuencia que se esta siguiendo, si se sigue una secuencia edsordenada como en el caso de aleatorio se pierde la legibilidad la confiabilidad por el desorden que hay en sus valores.
+
+7.  Write a C program that does a large number of references to elements of two-dimensioned arrays, using only subscripting. Write a second program that does the same operations but uses pointers and pointer arithmetic for the storage-mapping function to do the array references. Compare the time efficiency of the two programs. Which of the two programs is likely to be more reliable? Why?
+
+1:
+int mat[300][300],i,j;
+int n = 100;
+
+for(i=0;i<n;i++)
+  for(j=0;j<n;j++){
+  mat[i][j] = 666;
+  }
+
+for(i=0;i<n;i++)
+  for(j=0;j<n;j++){
+  mat[i][j] += 123;
+  }
+  
+  /// 0.041 s
+
+2:
+int **mat2 = (int **)malloc(n * sizeof(int*));
+for(int i = 0; i < n; i++)
+    mat2[i] = (int *)malloc(n * sizeof(int));
+
+int num = 666;
+
+for(i=0;i<n;i++)
+  for(j=0;j<n;j++){
+  int* p = &num;
+  mat2[i][j] = *p;
+  }
+
+for(i=0;i<n;i++)
+  for(j=0;j<n;j++){
+  int* p = &num;
+  *(p++);
+  mat2[i][j] = *p;
+  }
+
+ ///0.016 s
+ 
+ para el 1er caso se obtuvo 0.041s y para el segundo 0.016, evaluandolos ambos con una arreglo multidimensional (matriz) de 300x300, el tiempo de respuesta es notorio ya que utilizando operaciones de punteros para la alojacion de la matriz es r{apido ya que esta trabaja unicamente con direcciones de memoria, a diferencia del otro caso que debe de buscar la poscicion en la pila del compilador.
+ En cuanto a la confiabilidad se puede decir que el 1er caso es mas "seguro" ya que al no utilizar punteros se está restringiendo el acceso a ciertas zonas del programa por parte del programador las cuales podrian ser alteradas con el uso de punteros.
+
+
