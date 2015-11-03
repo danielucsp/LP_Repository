@@ -210,7 +210,20 @@ enum Suit { cero , uno, dos, tres };
     // bool h = cero > uno; C
     
 C#:
-
+public class Test
+{
+   enum Suit { cero , uno, dos, tres };
+   public static void Main()
+   {
+    // int a = Suit.cero + 1;    I
+    // Suit.cero = 5;            I
+    // int b = Suit.uno + Suit.dos;   I
+    // Suit.uno = Suit.dos;           I
+    // Suit.cero++;              I
+    // char f = Suit.uno;  	I      
+    // bool h = cero > uno; I
+   }
+}
 
 6. Write a program in C++ or C# that includes two different enumeration types and has a significant number of operations using the enumeration types. Also write the same program using only integer variables. Compare the readability and predict the reliability differences between the two programs.
 
