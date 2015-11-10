@@ -182,11 +182,12 @@ int A[20][20], B[20][20], C[20][20];
 0x00401552	leave
 0x00401553	ret
 
-para la multiplicacion de matrices se requieren 3 instrucciones para el subscript range checking debido a que en la multiplicaci{on de matrices se requiere de una anidacion de bucles:
+para la multiplicacion de matrices se requieren 3 instrucciones para el subscript range checking debido a que en la multiplicación de matrices se requiere de una anidacion de bucles:
 0x0040152A	incl   0x12d4(%esp)
 0x00401445	movl   $0x0,0x12d0(%esp)
 0x00401465  movl   $0x0,0x12cc(%esp)
-y por ultimo el numero de instrucciones que se requieren para realizar la multiplicacion, depende de la dimensionalidad de las 2 matrices, por ejemplo si las dos matrices son cuadradas y de dimensiones nxn, entonces se requerira n^3 instrucciones.
+la repetición de las instrucciones depende de la dimensionalidad de las 2 matrices, por ejemplo si las dos matrices son cuadradas y de dimensiones nxn, entonces se requerira n^3 instrucciones.
+Por ultimo el total de instrucciones que se requieren son 113, para asignar memoria, para modificar los valores, verificar la dimensionalidad de la matriz, etc.
 
 4. If you have access to a compiler in which the user can specify whether subscript range checking is desired, write a program that does a large number of matrix accesses and time their execution. Run the program with subscript range checking and without it, and compare the times.
 
@@ -224,6 +225,8 @@ public class Test
     // bool h = cero > uno; I
    }
 }
+
+Las restricciones en cuando al uso del tipo enum en C# son mayores, ya que a diferencia de C++, no permite operaciones aritmeticas incluso de asignacion con otro tipo de datos siempre y cuando sea otro tipo enum y que el valor del elemento no coincida con algun otro dentro de un grupo de elementos de un enum.
 
 6. Write a program in C++ or C# that includes two different enumeration types and has a significant number of operations using the enumeration types. Also write the same program using only integer variables. Compare the readability and predict the reliability differences between the two programs.
 
@@ -289,12 +292,61 @@ for(i=0;i<n;i++)
 
 8. Write a Perl program that uses a hash and a large number of operations on the hash. For example, the hash could store people’s names and their ages. A random-number generator could be used to create three-characternames and ages, which could be added to the hash. When a duplicate name was generated, it would cause an access to the hash but not add a new element. Rewrite the same program without using hashes. Compare the execution efficiency of the two. Compare the ease of programming and readability of the two.
 
+HASH:
+my %nombres;
+
+my @chars = ("A".."Z");
+my @numeros = ("0".."9");
+my $nombre, $edad;
+
+print $string;
+
+for($i = 0; $i < 1000000; $i++){
+    $nombre .= $chars[rand @chars] for 1..3;
+    $edad .= $numeros[rand @numeros] for 1..3;
+    
+    $nombres{$nombre} = $edad;
+    undef $nombre;
+    undef $edad;
+}
+
+#while( my( $key, $value ) = each %nombres ){
+#    print "$key: $value\n";
+#}
+
+@keys = keys %nombres;
+$size = @keys;
+print "$size\n";
+
+NO HASH:
+my @nombres;
+my @edades;
+
+my @chars = ("A".."Z");
+my @numeros = ("0".."9");
+my $nombre, $edad;
+
+for ($i = 0; $i < 1000000; $i++){
+    $nombre .= $chars[rand @chars] for 1..3;
+    $edad .= $numeros[rand @numeros] for 1..3;
+    
+    push @nombres, $nombre;
+    push @edades, $edad;
+    
+    undef $nombre;
+    undef $edad;
+}
+
+HASH: 28 segundos;
+NO HASH: 3 segundos;
+el tiempo en una tabla hash es notoriamente mayor debido a que en un hash no se permite que existan llaves iguales, por lo que antes de almacenar la llave generada aleatoriamente, tiene que hacer una busqueda para verificar si existe ya la llave.
+En cuanto a la facilidad y legibilidad de programarlo, realizarlo en una tabla hash es mejor ya que permite almacenar un pair de key-value, y asi evitar tener que realizar 2 sentencias para almacenar los valores generados para cada llave.
+
 9. Write a program in the language of your choice that behaves differently if the language used name equivalence than if it used structural equivalence.
 
 10. For what types of A and B is the simple assignment statement A = B legal in C++ but not Java?
 
 - la asignacion de valores entre una variable bool y un entero es legal en C++ pero no en Java
 - la asignacion de valores entre una variable char y un entero es legal en C++ pero no en Java
-
 
 11. For what types of A and B is the simple assignment statement A = B legal in Java but not in Ada?
