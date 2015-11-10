@@ -69,3 +69,20 @@ public class test {
 } // 46 46
 
 tanto en C como en C++ permite la modificacion de variables al ingresar por una funcion ya que permiten el uso de punteros y direcciones de memoria, a diferencia de Java y C# que no lo hacen, lo cual hace que los valores sean modificables solo dentro de funciones.
+
+3. Write a test program in your favorite language that determines and outputs the precedence and associativity of its arithmetic and Boolean operators.
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+int main() {
+ float a = 1 + 2 - 10 * 5 / 5;
+ bool b = 1 || 0 && 1 > 1;
+
+ printf("%f\n", a);
+ cout << b << endl;
+ return 1;
+}
+
+La precedencia en el lenguaje C++ en el caso de las operaciones aritmeticas esta en la multiplicacion y la division, y luego en la suma y resta.
+Para el caso de operaciones booleanas
