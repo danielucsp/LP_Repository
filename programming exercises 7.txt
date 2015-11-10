@@ -1,0 +1,71 @@
+1. Run the code given in Problem 13 (in the Problem Set) on some system that supports C to determine the values of sum1 and sum2. Explain the
+results.
+#include <stdio.h>
+
+int fun(int *k) {
+ *k += 4;
+ return 3 * (*k) - 1;
+ }
+
+void main() {
+ int i = 10, j = 10, sum1, sum2;
+ sum1 = (i / 2) + fun(&i);  //5 + 41
+ sum2 = fun(&j) + (j / 2);  //41 + 7
+
+ printf("%i %i\n", sum1, sum2);
+}
+
+sum1 = 46
+sum2 = 48
+en sum1 realiza la suma de 5+41 porque primero realiza la operacion de division y luego modifica la variable "i", a diferencia del otro caso que primero modifica la variable "j" dentro de la funcion, y luego realiza la division entre 2, por lo que realiza la suma 41+7.
+
+2. Rewrite the program of Programming Exercise 1 in C++, Java, and C#, run them, and compare the results.
+C++:
+#include <stdio.h>
+
+int fun(int *k) {
+ *k += 4;
+ return 3 * (*k) - 1;
+ }
+
+int main() {
+ int i = 10, j = 10, sum1, sum2;
+ sum1 = (i / 2) + fun(&i);  //5 + 41
+ sum2 = fun(&j) + (j / 2);  //41 + 7
+
+ printf("%i %i\n", sum1, sum2);  //46 48
+ return 1;
+}
+
+Java:
+public class test {
+
+    public static int fun(int k) {
+	 k += 4;
+	 return 3 * k - 1;
+    }
+    public static void main(String[] args) {
+        int i = 10, j = 10, sum1, sum2;
+ 	sum1 = (i / 2) + fun(i);  //5 + 41
+ 	sum2 = fun(j) + (j / 2);  //41 + 7
+        System.out.printf("a=%d, b=%d, c=%d", i, sum1, sum2); //46 46
+    }
+}
+
+C#:
+using System;
+
+public class test {
+
+    public static int fun(int k) {
+	 k += 4;
+	 return 3 * k - 1;
+    }
+    public static void Main(String[] args) {
+        int i = 10, j = 10, sum1, sum2;
+ 	sum1 = (i / 2) + fun(i);  //5 + 41
+ 	sum2 = fun(j) + (j / 2);  //41 + 7
+    }
+} // 46 46
+
+tanto en C como en C++ permite la modificacion de variables al ingresar por una funcion ya que permiten el uso de punteros y direcciones de memoria, a diferencia de Java y C# que no lo hacen, lo cual hace que los valores sean modificables solo dentro de funciones.
