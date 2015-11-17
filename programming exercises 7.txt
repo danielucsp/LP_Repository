@@ -85,4 +85,164 @@ int main() {
 }
 
 La precedencia en el lenguaje C++ en el caso de las operaciones aritmeticas esta en la multiplicacion y la division, y luego en la suma y resta.
-Para el caso de operaciones booleanas
+Para el caso de operaciones booleanas la precedencia esta en los operadores logicos (and y or) y luego en los operadores relacionales.
+
+4. Write a Java program that exposes Java’s rule for operand evaluation order when one of the operands is a method call.
+public class HelloWorld{
+    
+    public static int a = 5;
+    public static int fun1() {
+        a = 17;
+        return 3;
+    } 
+
+     public static void main(String []args){
+        //HelloWorld.a = HelloWorld.a + fun1();  //imprime 8
+        //HelloWorld.a = fun1() + HelloWorld.a;  //imprime 20
+        System.out.println(HelloWorld.a);
+     }
+}
+La manera en como probar las reglas de evaluacion de operandos en java es haciendo un "efecto colateral". Este consiste en hacer una llamada a un metodo como operando de una operación.
+en el primer caso imprime 8 porque primero hacer la suma del valor original mas lo que retorna la funcion.
+en el segundo caso imprime 20 porque pprimero hace la llamada a la funcion donde retorna 3 y ademas modifica el valor de "a", y luego se suma el valor modificado.
+
+5. Repeat Programming Exercise 5 with C++.
+#include <iostream>
+
+using namespace std;
+
+int a = 5;
+
+int fun1(){
+    int a = 17;
+    return 3;
+}
+
+int main()
+{
+   //a = a + fun1(); //imprime 8
+   //a = fun1() + a; //imprime 8
+   cout << a << endl;
+   return 0;
+}
+
+en el caso de C++ no existe un efecto colateral debido a que una variable que es declarada fuera de una funcion no es modificada a no ser que en la funcion se declare un parametro por referencia.
+
+6. Repeat Programming Exercise 6 with C#.
+using System.IO;
+using System;
+
+class Program
+{
+    public static int a = 5;
+    public static int fun1() {
+        a = 17;
+        return 3;
+    } 
+
+    static void Main()
+    {
+        //a = a + fun1();  //imprime 8
+        //a = fun1() + a;  //imprime 20
+        Console.WriteLine(a);
+    }
+}
+
+en el caso de C# ocurre un efecto colateral debido a que en el lenguaje no hay una nocion de variables en matematica.
+
+7. Write a program in either C++, Java, or C# that illustrates the order of evaluation of expressions used as actual parameters to a method.
+#include <iostream>
+using namespace std;
+
+int a = 5;
+int b = 10;
+int c = 100;
+int fun(int a, int b, int c)
+{
+    return b * a + c - b / a;
+}
+
+bool fun2(int a, int b, int c)
+{
+    return a > 5 && b == 100 > c == 100;
+}
+
+int main(){
+
+    int r = fun(a,b,c);
+    bool r2 = fun2(a,b,c);
+    cout << r << endl;
+    cout << r2 << endl;
+    return 0;
+}
+
+el orden de evaluación en c++ es en las operaciones aritmeticas, primero la multiplicacion y division las cuales estan en un mismo nivel de precedencia, y despues la suma y la resta.
+Para el caso de expresiones booleanas y relacionales, quienes tienen mayor precedencia son las expresiones booleanas y luego siguen las relacionales.
+
+8,Write a C program that has the following statements:
+
+int a, b;
+a = 10;
+b = a + fun();
+printf("With the function call on the right, ");
+printf(" b is: %d\n", b);
+a = 10;
+b = fun() + a;
+printf("With the function call on the left, ");
+printf(" b is: %d\n", b);
+
+and define fun to add 10 to a. Explain the results
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int a = 10, b;
+
+int fun()
+{
+   return a += 10;
+}
+
+int main(){
+
+    b = a + fun();
+    printf("With the function call on the right, ");
+    printf(" b is: %d\n", b);
+    a = 10;
+    b = fun() + a;
+    printf("With the function call on the left, ");
+    printf(" b is: %d\n", b);
+
+    return 0;
+}
+
+ambos resultados imprimen 40 porque no existe en C un efecto colateral, por lo tanto el valor de "a" sera el que se obtiene luego de llamar a la funcion, por lo tanto el valor de b es 20 + 20. ya sea si la funcion es llamada priemro o despues.
+
+9. Write a program in either Java, C++, or C# that performs a large number of floating-point operations and an equal number of integer operations and compare the time required.
+int main(){
+
+    float a = 2.3;
+
+    for(int i = 0; i < 10000000; i++)
+    {
+        a += 1.5;
+        a -= 1;
+        a *= 3.2;
+    }
+    return 0;
+} // 3.352 segundos
+
+int main(){
+
+    int a = 2.3;
+
+    for(int i = 0; i < 10000000; i++)
+    {
+        a += 2;
+        a -= 1;
+        a *= 3;
+    }
+    return 0;
+} // 0.078 segundos
+
+el tiempo de respuesta al evaluar enteros es mas corto porque el tipo de variable float contiene numeros decimales, lo cual adiciona algunos criterios de operacion al ser evaluados, a diferencia de una variable entera que no cuenta con parte decimal y por lo tanto, es mas rapida su evaluacion.
