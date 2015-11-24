@@ -1,1 +1,17 @@
 1. Write a Scheme function that computes the volume of a sphere, given its radius.
+(define pi 3.1416)
+
+(define (vol_esfera r)
+ (*(/ 4 3) pi (expt r 3)))
+ 
+ 2. Write a Scheme function that computes the real roots of a given quadratic equation. If the roots are complex, the function must display a message indicating that. This function must use an IF function. The three parameters to the function are the three coefficients of the quadratic equation.
+(define real    
+            (lambda (a b c)
+                            if (= (- (expt b 2) (* 4 a c)) 0
+                                (/ -b (* 2 a))
+                                if(> (- (expt b 2) (* 4 a c)) 0
+                                    (values (/ (+ -b (sqrt - (expt b 2) (* 4 a c))) (* 2 a))
+                                            (/ (- -b (sqrt - (expt b 2) (* 4 a c))) (* 2 a)))
+                                    (write "la discriminante es negativa y tiene raices complejas")))))
+                                    
+3. Repeat Programming Exercise 2 using a COND function, rather than an IF function.
