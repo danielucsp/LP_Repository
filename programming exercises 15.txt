@@ -15,3 +15,13 @@
                                     (write "la discriminante es negativa y tiene raices complejas")))))
                                     
 3. Repeat Programming Exercise 2 using a COND function, rather than an IF function.
+(define real    
+            (lambda (a b c)
+                            cond (= (- (expt b 2) (* 4 a c)) 0
+                                (/ -b (* 2 a))
+                                cond(> (- (expt b 2) (* 4 a c)) 0
+                                    (values (/ (+ -b (sqrt - (expt b 2) (* 4 a c))) (* 2 a))
+                                            (/ (- -b (sqrt - (expt b 2) (* 4 a c))) (* 2 a)))
+                                    (write "la discriminante es negativa y tiene raices complejas")))))
+                                    
+A diferencia de utilizar IF, cuando se utiliza "cond" se puede permitir mas de una condicional para evaluar, es decir que con un if se evalua tan solo lo que esta dentro de un bloque de parentesis, mientras que con cond se puede evaluar mas de un bloque.
