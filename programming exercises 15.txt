@@ -25,3 +25,47 @@
                                     (write "la discriminante es negativa y tiene raices complejas")))))
                                     
 A diferencia de utilizar IF, cuando se utiliza "cond" se puede permitir mas de una condicional para evaluar, es decir que con un if se evalua tan solo lo que esta dentro de un bloque de parentesis, mientras que con cond se puede evaluar mas de un bloque.
+
+4. Write a Scheme function that takes two numeric parameters, A and B, and returns A raised to the B power.
+(define (pow A B)
+  (expt A B))
+  
+5. Write a Scheme function that returns the number of zeros in a given simple list of numbers.
+(define (ceros lst)
+  (let loop ((lst lst)
+             (count 0))
+    (cond ((null? lst) count)
+          ((zero? (car lst)) (loop (cdr lst) (+ count 1)))
+          (else (loop (cdr lst) count)))))
+
+6. Write a Scheme function that takes a simple list of numbers as a parameter and returns a list with the largest and smallest numbers in the input list.
+(define (max lst)
+  (if (null? lst) 
+      (display "error")                
+      (let loop ((lst (cdr lst))   
+                 (ma (car lst)))  
+        (cond ((null? lst) ma)
+              ((> (car lst) ma)   
+               (loop (cdr lst) (car lst))) 
+              (else                      
+               (loop (cdr lst) ma))))))   
+               
+(define (min lst)
+  (if (null? lst) 
+      (display "error")                
+      (let loop ((lst (cdr lst))   
+                 (mi (car lst)))  
+        (cond ((null? lst) mi)
+              ((< (car lst) mi)   
+               (loop (cdr lst) (car lst))) 
+              (else                      
+               (loop (cdr lst) mi))))))  
+              
+7. Write a Scheme function that takes a list and an atom as parameters and returns a list identical to its parameter list except with all top-level instances of the given atom deleted.
+(define borrar
+  (lambda (a lst)
+    (cond
+     ((equal? a (car lst)) (cdr lst))
+     (else (cons (car lst) (borrar a (cdr lst)))))))
+     
+8. Write a Scheme function that takes a list as a parameter and returns a list identical to the parameter except the last element has been deleted.
