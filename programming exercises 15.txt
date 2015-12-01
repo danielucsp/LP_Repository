@@ -77,3 +77,47 @@ A diferencia de utilizar IF, cuando se utiliza "cond" se puede permitir mas de u
 9. Repeat Programming Exercise 7, except that the atom can be either an atom or a list.
 
 10. Write a Scheme function that takes two atoms and a list as parameters and returns a list identical to the parameter list except all occurrences of the first given atom in the list are replaced with the second given atom, no matter how deeply the first atom is nested.
+(define replace 
+    (lambda (lst a b) 
+        (if (eqv? lst a)
+            b
+            (if (null? lst)
+                '() 
+
+                (if (equal? a (car lst))
+                    (cons b (replace (cdr lst) a b))
+
+                    (cons (car lst)
+                    (replace (cdr lst) a b)))))))
+                    
+11. Write a Scheme function that returns the reverse of its simple list parameter.
+(define (reverse lst)
+  (if (null? lst)
+     nil
+     (append (reverse (cdr lst)) (list (car lst)))))
+     
+12. Write a Scheme predicate function that tests for the structural equality of two given lists. Two lists are structurally equal if they have the same list structure, although their atoms may be different.
+
+13. Write a Scheme function that returns the union of two simple list parameters that represent sets.
+(define (concat lst lst2)
+    (cons lst lst2))
+    
+14. Write a Scheme function with two parameters, an atom and a list, that returns a list identical to the parameter list except with all occurrences, no matter how deep, of the given atom deleted. The returned list cannot contain anything in place of the deleted atoms.
+(define borrar
+  (lambda (a lst)
+    (cond
+     ((equal? a (car lst)) (cdr lst))
+     (else (cons (car lst) (borrar a (cdr lst)))))))
+     
+15. Write a Scheme function that takes a list as a parameter and returns a list identical to the parameter list except with the second top-level element removed. If the given list does not have two elements, the function should return ().
+(define (delete lst n)
+  (if (= n 0) 
+      (cdr lst)
+      (append (list (car lst)) (delete (cdr lst) (- n 1st)))))
+
+(define (delete2 lst)
+  (delete-n lst 2))
+  
+
+
+
