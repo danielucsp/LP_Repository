@@ -69,3 +69,11 @@ A diferencia de utilizar IF, cuando se utiliza "cond" se puede permitir mas de u
      (else (cons (car lst) (borrar a (cdr lst)))))))
      
 8. Write a Scheme function that takes a list as a parameter and returns a list identical to the parameter except the last element has been deleted.
+(define (popback lst)
+    (if (null? (cdr lst))
+        '()
+        (cons (car lst) (popback (cdr lst)))))
+        
+9. Repeat Programming Exercise 7, except that the atom can be either an atom or a list.
+
+10. Write a Scheme function that takes two atoms and a list as parameters and returns a list identical to the parameter list except all occurrences of the first given atom in the list are replaced with the second given atom, no matter how deeply the first atom is nested.
